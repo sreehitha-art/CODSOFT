@@ -1,0 +1,83 @@
+rom tkinter import *
+
+import random
+
+import string
+
+# Function to generate password
+
+def generate_password():
+
+    length = int(length_entry.get())
+
+    characters = string.ascii_letters + string.digits + string.punctuation
+
+    password = ""
+
+    for i in range(length):
+
+        password = password + random.choice(characters)
+
+    result.config(text=password)
+
+# Create window
+
+root = Tk()
+
+root.title("Password Generator")
+
+root.geometry("400x300")
+
+root.config(bg="lightblue")
+
+# Heading
+
+heading = Label(root,
+
+                text="PASSWORD GENERATOR",
+
+                font=("Arial", 16, "bold"),
+
+                bg="lightblue")
+
+heading.pack(pady=10)
+
+# Length input
+
+label1 = Label(root,
+
+               text="Enter Password Length:",
+
+               bg="lightblue")
+
+label1.pack()
+
+length_entry = Entry(root)
+
+length_entry.pack(pady=5)
+
+# Generate button
+
+button1 = Button(root,
+
+                 text="Generate Password",
+
+                 command=generate_password)
+
+button1.pack(pady=10)
+
+# Result
+
+result = Label(root,
+
+               text="Your Password Will Appear Here",
+
+               font=("Arial", 12),
+
+               bg="lightblue",
+
+               wraplength=350)
+
+result.pack(pady=20)
+
+root.mainloop()
