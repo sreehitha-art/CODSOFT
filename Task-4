@@ -1,0 +1,262 @@
+from tkinter import *
+
+import random
+
+player_score = 0
+
+computer_score = 0
+
+def play(user_choice):
+
+    global player_score, computer_score
+
+    choices = ["Rock", "Paper", "Scissors"]
+
+    computer_choice = random.choice(choices)
+
+    user_label.config(text="Your Choice: " + user_choice)
+
+    computer_label.config(text="Computer Choice: " + computer_choice)
+
+    if user_choice == computer_choice:
+
+        result_label.config(text="It's a Tie!")
+
+    elif user_choice == "Rock" and computer_choice == "Scissors":
+
+        player_score += 1
+
+        result_label.config(text="You Win!")
+
+    elif user_choice == "Paper" and computer_choice == "Rock":
+
+        player_score += 1
+
+        result_label.config(text="You Win!")
+
+    elif user_choice == "Scissors" and computer_choice == "Paper":
+
+        player_score += 1
+
+        result_label.config(text="You Win!")
+
+    else:
+
+        computer_score += 1
+
+        result_label.config(text="Computer Wins!")
+
+    score_label.config(
+
+        text="Player: " + str(player_score) +
+
+             " | Computer: " + str(computer_score)
+
+    )
+
+def reset_game():
+
+    global player_score, computer_score
+
+    player_score = 0
+
+    computer_score = 0
+
+    user_label.config(text="Your Choice:")
+
+    computer_label.config(text="Computer Choice:")
+
+    result_label.config(text="Result")
+
+    score_label.config(text="Player: 0 | Computer: 0")
+
+root = Tk()
+
+root.title("Rock Paper Scissors Game")
+
+root.geometry("450x400")
+
+root.configure(bg="#1b1b35")
+
+heading = Label(
+
+    root,
+
+    text="Rock Paper Scissors",
+
+    font=("Arial", 20, "bold"),
+
+    fg="cyan",
+
+    bg="#1b1b35"
+
+)
+
+heading.pack(pady=15)
+
+instruction = Label(
+
+    root,
+
+    text="Choose Rock, Paper or Scissors",
+
+    font=("Arial", 10),
+
+    fg="white",
+
+    bg="#1b1b35"
+
+)
+
+instruction.pack()
+
+frame = Frame(root, bg="#1b1b35")
+
+frame.pack(pady=20)
+
+rock_btn = Button(
+
+    frame,
+
+    text="Rock",
+
+    width=10,
+
+    bg="salmon",
+
+    command=lambda: play("Rock")
+
+)
+
+rock_btn.grid(row=0, column=0, padx=5)
+
+paper_btn = Button(
+
+    frame,
+
+    text="Paper",
+
+    width=10,
+
+    bg="lightgreen",
+
+    command=lambda: play("Paper")
+
+)
+
+paper_btn.grid(row=0, column=1, padx=5)
+
+scissors_btn = Button(
+
+    frame,
+
+    text="Scissors",
+
+    width=10,
+
+    bg="orange",
+
+    command=lambda: play("Scissors")
+
+)
+
+scissors_btn.grid(row=0, column=2, padx=5)
+
+user_label = Label(
+
+    root,
+
+    text="Your Choice:",
+
+    font=("Arial", 11),
+
+    fg="white",
+
+    bg="#1b1b35"
+
+)
+
+user_label.pack(pady=5)
+
+computer_label = Label(
+
+    root,
+
+    text="Computer Choice:",
+
+    font=("Arial", 11),
+
+    fg="white",
+
+    bg="#1b1b35"
+
+)
+
+computer_label.pack(pady=5)
+
+result_label = Label(
+
+    root,
+
+    text="Result",
+
+    font=("Arial", 14, "bold"),
+
+    fg="lightgreen",
+
+    bg="#1b1b35"
+
+)
+
+result_label.pack(pady=15)
+
+score_label = Label(
+
+    root,
+
+    text="Player: 0 | Computer: 0",
+
+    font=("Arial", 12, "bold"),
+
+    fg="cyan",
+
+    bg="#1b1b35"
+
+)
+
+score_label.pack(pady=10)
+
+reset_btn = Button(
+
+    root,
+
+    text="Reset Game",
+
+    bg="purple",
+
+    fg="white",
+
+    command=reset_game
+
+)
+
+reset_btn.pack(pady=10)
+
+exit_btn = Button(
+
+    root,
+
+    text="Exit",
+
+    bg="red",
+
+    fg="white",
+
+    command=root.destroy
+
+)
+
+exit_btn.pack()
+
+root.mainloop()
+
