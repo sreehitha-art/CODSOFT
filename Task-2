@@ -1,0 +1,90 @@
+from tkinter import *
+def calculate():
+
+    n1 = float(num1.get())
+
+    n2 = float(num2.get())
+
+    op = operation.get()
+
+    if op == "+":
+
+        result.config(text="Result = " + str(n1 + n2))
+
+    elif op == "-":
+
+        result.config(text="Result = " + str(n1 - n2))
+
+    elif op == "*":
+
+        result.config(text="Result = " + str(n1 * n2))
+
+    elif op == "/":
+
+        if n2 != 0:
+
+            result.config(text="Result = " + str(n1 / n2))
+
+        else:
+
+            result.config(text="Cannot divide by zero")
+
+# Main window
+
+root = Tk()
+
+root.title("Calculator")
+
+root.geometry("350x300")
+
+root.config(bg="lightblue")
+
+# Heading
+
+Label(root, text="CALCULATOR",
+
+      font=("Arial", 16, "bold"),
+
+      bg="lightblue").pack(pady=10)
+
+# First number
+
+Label(root, text="Enter First Number:", bg="lightblue").pack()
+
+num1 = Entry(root)
+
+num1.pack()
+
+# Second number
+
+Label(root, text="Enter Second Number:", bg="lightblue").pack()
+
+num2 = Entry(root)
+
+num2.pack()
+
+# Operation
+
+Label(root, text="Operation (+,-,*,/):", bg="lightblue").pack()
+
+operation = Entry(root)
+
+operation.pack()
+
+# Calculate button
+
+Button(root, text="Calculate",
+
+       command=calculate).pack(pady=10)
+
+# Result label
+
+result = Label(root, text="Result = ",
+
+               font=("Arial", 12),
+
+               bg="lightblue")
+
+result.pack()
+
+root.mainloop()
