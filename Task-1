@@ -1,0 +1,63 @@
+from tkinter import *
+root = Tk()
+
+root.title("To-Do List")
+
+root.geometry("400x350")
+
+root.config(bg="lightblue")
+def add():
+
+    task = entry.get()
+
+    if task != "":
+
+        listbox.insert(END, task)
+
+        entry.delete(0, END)
+
+def remove():
+
+    selected = listbox.curselection()
+
+    if selected:
+
+        listbox.delete(selected)
+
+def delete_all():
+
+    listbox.delete(0, END)
+label = Label(root, text="TO-DO LIST",
+
+              font=("Arial", 16, "bold"),
+
+              bg="lightblue")
+
+label.pack(pady=10)
+entry = Entry(root, width=30)
+
+entry.pack()
+btn1 = Button(root, text="Add", width=10, command=add)
+
+btn1.pack(pady=2)
+
+btn2 = Button(root, text="Remove", width=10, command=remove)
+
+btn2.pack(pady=2)
+
+btn3 = Button(root, text="Delete All", width=10, command=delete_all)
+
+btn3.pack(pady=2)
+listbox = Listbox(root, width=40, height=10, bg="beige")
+
+listbox.pack(pady=10)
+listbox.insert(END, "learn python")
+
+listbox.insert(END, "study data structures")
+
+listbox.insert(END, "prepare for interview")
+
+listbox.insert(END, "build python project")
+
+root.mainloop()
+
