@@ -1,0 +1,155 @@
+from tkinter import *
+
+contacts = {}
+
+def add_contact():
+
+    name = name_entry.get()
+
+    phone = phone_entry.get()
+
+    if name != "" and phone != "":
+
+        contacts[name] = phone
+
+        output.config(text="Contact Added")
+
+def view_contacts():
+
+    data = ""
+
+    for name, phone in contacts.items():
+
+        data += name + " : " + phone + "\n"
+
+    if data == "":
+
+        data = "No Contacts Found"
+
+    output.config(text=data)
+
+def search_contact():
+
+    name = name_entry.get()
+
+    if name in contacts:
+
+        output.config(text=name + " : " + contacts[name])
+
+    else:
+
+        output.config(text="Contact Not Found")
+
+def delete_contact():
+
+    name = name_entry.get()
+
+    if name in contacts:
+
+        del contacts[name]
+
+        output.config(text="Contact Deleted")
+
+    else:
+
+        output.config(text="Contact Not Found")
+
+root = Tk()
+
+root.title("Contact Book")
+
+root.geometry("450x400")
+
+root.config(bg="lightblue")
+
+Label(
+
+    root,
+
+    text="CONTACT BOOK",
+
+    font=("Arial", 18, "bold"),
+
+    bg="lightblue"
+
+).pack(pady=10)
+
+Label(root, text="Name", bg="lightblue").pack()
+
+name_entry = Entry(root, width=30)
+
+name_entry.pack()
+
+Label(root, text="Phone Number", bg="lightblue").pack()
+
+phone_entry = Entry(root, width=30)
+
+phone_entry.pack()
+
+Button(
+
+    root,
+
+    text="Add Contact",
+
+    width=15,
+
+    command=add_contact
+
+).pack(pady=5)
+
+Button(
+
+    root,
+
+    text="View Contacts",
+
+    width=15,
+
+    command=view_contacts
+
+).pack(pady=5)
+
+Button(
+
+    root,
+
+    text="Search Contact",
+
+    width=15,
+
+    command=search_contact
+
+).pack(pady=5)
+
+Button(
+
+    root,
+
+    text="Delete Contact",
+
+    width=15,
+
+    command=delete_contact
+
+).pack(pady=5)
+
+output = Label(
+
+    root,
+
+    text="Contacts will appear here",
+
+    bg="white",
+
+    width=40,
+
+    height=8,
+
+    justify=LEFT
+
+)
+
+output.pack(pady=10)
+
+root.mainloop()
